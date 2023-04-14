@@ -1,62 +1,62 @@
-/// !!!若初次使用此类型功能，请翻至本脚本154行以下查看说明。
+﻿/// !!!若初次使用此类型功能，请翻至本脚本154行以下查看说明。
 enum easing_type { // 定义各种easing类型 // 通过 https://easings.net 来查看具体缓动
-    linear,
-    easeInQuad,
-    easeOutQuad,
-    easeInOutQuad,
-    easeInCubic,
-    easeOutCubic,
-    easeInOutCubic,
-    easeInQuart,
-    easeOutQuart,
-    easeInOutQuart,
-    easeInQuint,
-    easeOutQuint,
-    easeInOutQuint,
-    easeInSine,
-    easeOutSine,
-    easeInOutSine,
-    easeInExpo,
-    easeOutExpo,
-    easeInOutExpo,
-    easeInCirc,
-    easeOutCirc,
-    easeInOutCirc,
-    easeInBack,
-    easeOutBack,
-    easeInOutBack,
-    easeInElastic,
-    easeOutElastic,
-    easeInOutElastic,
-    easeInBounce,
-    easeOutBounce,
-    easeInOutBounce,
+	linear,
+	easeInQuad,
+	easeOutQuad,
+	easeInOutQuad,
+	easeInCubic,
+	easeOutCubic,
+	easeInOutCubic,
+	easeInQuart,
+	easeOutQuart,
+	easeInOutQuart,
+	easeInQuint,
+	easeOutQuint,
+	easeInOutQuint,
+	easeInSine,
+	easeOutSine,
+	easeInOutSine,
+	easeInExpo,
+	easeOutExpo,
+	easeInOutExpo,
+	easeInCirc,
+	easeOutCirc,
+	easeInOutCirc,
+	easeInBack,
+	easeOutBack,
+	easeInOutBack,
+	easeInElastic,
+	easeOutElastic,
+	easeInOutElastic,
+	easeInBounce,
+	easeOutBounce,
+	easeInOutBounce,
 	easeOutInBounce // !OutInBounce为非常规Easing
-}
+};
 globalvar easing; // 存储各种easing函数的数组
 easing = [
-    function(t) { return t; }, // linear
-    function(t) { return t*t; }, // easeInQuad
-    function(t) { return t*(2-t); }, // easeOutQuad
-    function(t) { return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }, // easeInOutQuad
-    function(t) { return t*t*t; }, // easeInCubic
-    function(t) { return (--t)*t*t+1; }, // easeOutCubic
-    function(t) { return t<0.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1; }, // easeInOutCubic
-    function(t) { return t*t*t*t; }, // easeInQuart
-    function(t) { return 1-(--t)*t*t*t; }, // easeOutQuart
-    function(t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t; }, // easeInOutQuart
-    function(t) { return t*t*t*t*t; }, // easeInQuint
-    function(t) { return 1+(--t)*t*t*t*t; }, // easeOutQuint
-    function(t) { return (t<0.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t); }, // easeInOutQuint
-    function(t) { return 1-cos(t*(pi/2)); }, // easeInSine
-    function(t) { return sin(t*(pi/2)); }, // easeOutSine
-    function(t) { return 0.5*(1-cos(pi*t)); }, // easeInOutSine
-    function(t) { return (t==0) ? 0 : power(2, 10*(t-1)); }, // easeInExpo
-    function(t) { return (t==1) ? 1 : (-power(2, -10*t)+1); }, // easeOutExpo
-    function(t) { return (t==0 || t==1) ? t : (t<0.5 ? 0.5*power(2, (20*t)-10) : -0.5*power(2, (-20*t)+10)+1); }, // easeInOutExpo
-    function(t) { return (t==0) ? 0 : power(1024, t-1); }, // easeInCirc
-    function(t) { return sqrt(1-(--t)*t); }, // easeOutCirc
-    function(t) { return t<0.5 ? (1-sqrt(1-4*t*t))/2 : (sqrt(-(2*t-3)*(2*t-1))+1)/2; }, // easeInOutCirc
+	function(t) { return t; }, // linear
+	function(t) { return t*t; }, // easeInQuad
+	function(t) { return t*(2-t); }, // easeOutQuad
+	function(t) { return t<0.5 ? 2*t*t : -1+(4-2*t)*t; }, // easeInOutQuad
+	function(t) { return t*t*t; }, // easeInCubic
+	function(t) { return (--t)*t*t+1; }, // easeOutCubic
+	function(t) { return t<0.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1; }, // easeInOutCubic
+	function(t) { return t*t*t*t; }, // easeInQuart
+	function(t) { return 1-(--t)*t*t*t; }, // easeOutQuart
+	function(t) { return t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t; }, // easeInOutQuart
+	function(t) { return t*t*t*t*t; }, // easeInQuint
+	function(t) { return 1+(--t)*t*t*t*t; }, // easeOutQuint
+	function(t) { return (t<0.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t); }, // easeInOutQuint
+	function(t) { return 1-cos(t*(pi/2)); }, // easeInSine
+	function(t) { return sin(t*(pi/2)); }, // easeOutSine
+	function(t) { return 0.5*(1-cos(pi*t)); }, // easeInOutSine
+	function(t) { return (t==0) ? 0 : power(2, 10*(t-1)); }, // easeInExpo
+	function(t) { return (t==1) ? 1 : (-power(2, -10*t)+1); }, // easeOutExpo
+	function(t) { return (t==0 || t==1) ? t : (t<0.5 ? 0.5*power(2, (20*t)-10) : -0.5*power(2, (-20*t)+10)+1); }, // easeInOutExpo
+	function(t) { return (t==0) ? 0 : power(1024, t-1); }, // easeInCirc
+	function(t) { return sqrt(1-(--t)*t); }, // easeOutCirc
+	function(t) { return t<0.5 ? (1-sqrt(1-4*t*t))/2 : (sqrt(-(2*t-3)*(2*t-1))+1)/2; }, // easeInOutCirc
 	function(t) { return (t * t * ((2.70158 * t) - 1.70158)); }, // easeInBack
 	function(t) { return 1 - easing[easing_type.easeInBack](1 - t); }, // easeOutBack
 	function(t) { return (t<0.5 ? easing[easing_type.easeInBack](t * 2) * 0.5 : easing[easing_type.easeOutBack](t * 2 - 1) * 0.5 + 0.5); }, // easeInOutBack
