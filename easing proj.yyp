@@ -1,0 +1,33 @@
+{
+  "resourceType": "GMProject",
+  "resourceVersion": "1.6",
+  "name": "easing proj",
+  "AudioGroups": [
+    {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
+  ],
+  "configs": {
+    "children": [],
+    "name": "Default",
+  },
+  "defaultScriptType": 1,
+  "Folders": [],
+  "IncludedFiles": [],
+  "isEcma": false,
+  "MetaData": {
+    "IDEVersion": "2023.1.0.58",
+  },
+  "resources": [
+    {"id":{"name":"TweenEasing","path":"scripts/TweenEasing/TweenEasing.yy",},"order":0,},
+    {"id":{"name":"_example_main","path":"objects/_example_main/_example_main.yy",},"order":0,},
+    {"id":{"name":"_example_object","path":"objects/_example_object/_example_object.yy",},"order":0,},
+    {"id":{"name":"_example_sprite","path":"sprites/_example_sprite/_example_sprite.yy",},"order":0,},
+    {"id":{"name":"easing_object","path":"objects/easing_object/easing_object.yy",},"order":0,},
+    {"id":{"name":"_example_room","path":"rooms/_example_room/_example_room.yy",},"order":0,},
+  ],
+  "RoomOrderNodes": [
+    {"roomId":{"name":"_example_room","path":"rooms/_example_room/_example_room.yy",},},
+  ],
+  "TextureGroups": [
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+  ],
+}

@@ -1,0 +1,9 @@
+start = 0;
+change = 0;
+target = noone;
+val = "";
+nowTime = 0;
+duration = 0;
+delay = 0;
+easing_class = easing_type.linear;
+visible = false;

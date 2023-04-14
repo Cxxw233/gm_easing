@@ -1,0 +1,11 @@
+{
+  "FolderOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"TweenEasing","order":5,"path":"scripts/TweenEasing/TweenEasing.yy",},
+    {"name":"_example_main","order":8,"path":"objects/_example_main/_example_main.yy",},
+    {"name":"_example_object","order":3,"path":"objects/_example_object/_example_object.yy",},
+    {"name":"_example_sprite","order":7,"path":"sprites/_example_sprite/_example_sprite.yy",},
+    {"name":"easing_object","order":6,"path":"objects/easing_object/easing_object.yy",},
+    {"name":"_example_room","order":1,"path":"rooms/_example_room/_example_room.yy",},
+  ],
+}
