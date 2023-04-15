@@ -1,4 +1,4 @@
-﻿/// !!!若初次使用此类型功能，请翻至本脚本154行以下查看说明。
+/// !!!若初次使用此类型功能，请翻至本脚本154行以下查看说明。
 enum easing_type { // 定义各种easing类型 // 通过 https://easings.net 来查看具体缓动
 	linear,
 	easeInQuad,
@@ -68,86 +68,92 @@ easing = [
 	function(t) { return (t<0.5 ? easing[easing_type.easeInBounce](t * 2) * 0.5 : easing[easing_type.easeOutBounce](t * 2 - 1) * 0.5 + 0.5 ); }, // easeInOutBounce
 	function(t) { return (t<0.5 ? easing[easing_type.easeOutBounce](t * 2) * 0.5 : easing[easing_type.easeInBounce](t * 2 - 1) * 0.5 + 0.5); } // easeOutInBounce (!Special)
 ];
-function easing_lerp(start, change, duration, current_frame, type=easing_type.linear, delay = 0 /* 此处delay无用.*/) {
-    if (duration <= 0) {
-        return start;
-    };
-    var easing_func = easing[type];
-    var t = clamp((current_frame - start - delay) / duration, 0.0, 1.0);
-    var value;
-    if (current_frame < start + delay) {
-        value = start;
-    }; else {
-        value = easing_func((t - delay / duration) * (duration / (duration - delay))) * change + start;
-    };
-    return value;
+function easing_lerp(start, change, duration, current_frame, type = easing_type.linear, delay = 0 /* 此处delay无用.*/ ) {
+	if (duration <= 0) {
+		return start;
+	};
+	var easing_func = easing[type];
+	var t = clamp((current_frame - start - delay) / duration, 0.0, 1.0);
+	var value;
+	if (current_frame < start + delay) {
+		value = start;
+	};
+	else {
+		value = easing_func((t - delay / duration) * (duration / (duration - delay))) * change + start;
+	};
+	return value;
 };
+
 function easing_execute(target, val, start, change, duration, easing_class = easing_type.linear, delay = 0) {
 	var class = instance_create_depth(0, 0, 0, easing_object);
-		class.start = start;
-		class.change = change;
-		class.duration = duration;
-		class.easing_class = easing_class;
-		class.target = target;
-		class.val = val;
-		class.delay = delay;
+	class.start = start;
+	class.change = change;
+	class.duration = duration;
+	class.easing_class = easing_class;
+	class.target = target;
+	class.val = val;
+	class.delay = delay;
 	return true;
 };
+
 function easing_exists(target, target_var) {
-    var obj_list = ds_list_create(); // 获取所有的easing对象
-    with (easing_object) {
-        ds_list_add(obj_list, id);
-    };
-    for (var i = 0; i < ds_list_size(obj_list); i++) { // 遍历所有的easing对象
-        var obj = ds_list_find_value(obj_list, i);
+	var obj_list = ds_list_create(); // 获取所有的easing对象
+	with(easing_object) {
+		ds_list_add(obj_list, id);
+	};
+	for (var i = 0; i < ds_list_size(obj_list); i++) { // 遍历所有的easing对象
+		var obj = ds_list_find_value(obj_list, i);
 		if (target == global && obj.val == target_var) {
 			if (obj.delay > 0 || obj.duration > obj.nowTime) {
 				ds_list_destroy(obj_list); // clear.
 				return true;
 			};
 		};
-        if (obj.target == target && obj.val == target_var) { // 如果该对象正在操作目标物体的目标变量
-            if (obj.delay > 0 || obj.duration > obj.nowTime) { // 检查该对象是否还在执行动画
-                ds_list_destroy(obj_list); // clear.
-                return true;
-            };
-        };
-    };
-    ds_list_destroy(obj_list); // clear.
-    return false;
+		if (obj.target == target && obj.val == target_var) { // 如果该对象正在操作目标物体的目标变量
+			if (obj.delay > 0 || obj.duration > obj.nowTime) { // 检查该对象是否还在执行动画
+				ds_list_destroy(obj_list); // clear.
+				return true;
+			};
+		};
+	};
+	ds_list_destroy(obj_list); // clear.
+	return false;
 };
+
 function easing_destroy(target, target_var, skip) {
 	if (!instance_exists(target)) {
 		return false;
 	};
-    var obj_list = ds_list_create(); // 获取所有的easing对象
-    with (easing_object) {
-        ds_list_add(obj_list, id);
-    };
-    for (var i = 0; i < ds_list_size(obj_list); i++) { // 遍历所有的easing对象
-        var obj = ds_list_find_value(obj_list, i);
+	var obj_list = ds_list_create(); // 获取所有的easing对象
+	with(easing_object) {
+		ds_list_add(obj_list, id);
+	};
+	for (var i = 0; i < ds_list_size(obj_list); i++) { // 遍历所有的easing对象
+		var obj = ds_list_find_value(obj_list, i);
 		if (target == global && obj.val == target_var) { // 如果该对象正在操作目标全局变量
 			if (skip) { // 如果需要跳过该对象
 				variable_global_set(target_var, obj.start + obj.change); // 直接赋值最终变量
 				instance_destroy(obj); // clear.
-			}; else {
+			};
+			else {
 				instance_destroy(obj); // clear.
 			};
 			ds_list_delete(obj_list, i); // clear.
 			break; // exit loop;
 		};
-        if (obj.target == target && obj.val == target_var) { // 如果该对象正在操作目标物体的目标变量
-            if (skip) { // 如果需要跳过该对象
+		if (obj.target == target && obj.val == target_var) { // 如果该对象正在操作目标物体的目标变量
+			if (skip) { // 如果需要跳过该对象
 				variable_instance_set(target, target_var, obj.start + obj.change); // 直接赋值最终变量
 				instance_destroy(obj); // clear.
-            }; else {
-                instance_destroy(obj); // clear.
-            };
-            ds_list_delete(obj_list, i); // clear.
-            break; // exit loop;
-        };
-    };
-    ds_list_destroy(obj_list); // clear.
+			};
+			else {
+				instance_destroy(obj); // clear.
+			};
+			ds_list_delete(obj_list, i); // clear.
+			break; // exit loop;
+		};
+	};
+	ds_list_destroy(obj_list); // clear.
 	return true;
 };
 /*
