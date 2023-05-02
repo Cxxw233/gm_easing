@@ -64,8 +64,8 @@ easing = [
 	function(t) { return (1 - easing[easing_type.easeInElastic](1 - t)); }, // easeOutElastic
 	function(t) { return (t<0.5 ? easing[easing_type.easeInElastic](t * 2) * 0.5 : easing[easing_type.easeOutElastic](t * 2 - 1) * 0.5 + 0.5); }, // easeInOutElastic
 	function(t) { return (1 - easing[easing_type.easeOutInBounce](1 - t)); }, // easeInBounce
-	function(t) { if(t<1/2.75) { return (7.5625 * t * t); } else { if(t<2/2.75) { t -= 1.5 / 2.75; return (7.5625 * t * t + 0.75 ); } else { if(t<2.5/2.75) { t -= 2.25 / 2.75; return (7.5625 * t * t + 0.9375); } else { t -= 2.625 / 2.75; return (7.5625 * t * t + 0.984375); } }}}, // easeOutBounce 不知道easeOutBounce用以下写法为什么报错（恼），于是只能写作if-else了 //function(t) { return (t < 1/2.75 ? 7.5625 * t * t : (t < 2/2.75 ? 7.5625 * (t - 1.5/2.75) * (t - 1.5) + 0.75 : (t < 2.5/2.75 ? 7.5625 * (t - 2.25/2.75) * (t - 2.25) + 0.9375 : 7.5625 * (t - 2.625/2.75) * (t - 2.625) + 0.984375))); }
-	function(t) { return (t<0.5 ? easing[easing_type.easeInBounce](t * 2) * 0.5 : easing[easing_type.easeOutBounce](t * 2 - 1) * 0.5 + 0.5 ); }, // easeInOutBounce // bug.
+	function(t) { return (t < (1 / 2.75) ? (7.5625 * t * t) : (t < (2 / 2.75) ? (7.5625 * (t - (1.5 / 2.75)) * (t - (1.5 / 2.75)) + 0.75) : (t < (2.5 / 2.75) ? (7.5625 * (t - (2.25 / 2.75)) * (t - (2.25 / 2.75)) + 0.9375) : (7.5625 * (t - (2.625 / 2.75)) * (t - (2.625 / 2.75)) + 0.984375)))); }, // easeOutBounce
+	function(t) { return (t<0.5 ? easing[easing_type.easeInBounce](t * 2) * 0.5 : easing[easing_type.easeOutBounce](t * 2 - 1) * 0.5 + 0.5 ); }, // easeInOutBounce
 	function(t) { return (t<0.5 ? easing[easing_type.easeOutBounce](t * 2) * 0.5 : easing[easing_type.easeInBounce](t * 2 - 1) * 0.5 + 0.5); } // easeOutInBounce (!Special)
 ];
 function easing_lerp(start, change, duration, current_frame, type = easing_type.linear, delay = 0 /* 此处delay无用. */) {
